@@ -1,0 +1,49 @@
+# Values for deployment-custom
+nameOverride: ""
+fullnameOverride: ""
+
+# --- Storage / PVC (JuiceFS) ---
+pvName: "pv-example"
+pvcName: "pvc-example"
+serviceName: "service-example"
+namespace: "juicefs"
+deploymentId: "12345"
+username: "testuser"
+storageSize: "5Gi"
+storageClass: "juicefs-sc"
+volumeHandle: "jfs-volume"
+secretName: "juicefs-sc-secret"
+
+# --- Workload / Pod (default: BusyBox) ---
+appLabel: "busybox"
+
+# Docker image to run a simple BusyBox container.
+image: "busybox:latest"
+
+# Container command & args for BusyBox.
+# Ở đây chỉ giữ pod chạy để bạn có thể exec vào và thao tác với dữ liệu đã mount.
+command:
+  - "sh"
+arguments:
+  - "-c"
+  - "sleep infinity"
+
+# Không expose port nữa vì không cần port-forward với BusyBox.
+# Để trống hoặc xoá hẳn nếu không dùng.
+containerPort: ""
+
+# Đường mount của PVC trong container.
+mountPath: "/models"
+
+# --- Environment variables for container ---
+# Có thể override / thêm env khi install:
+#   helm install ... --set envs.MY_KEY=my_value
+envs:
+  YOLO_MODEL_PATH: "/models/yolo11n.pt"
+
+# --- Resources ---
+cpuRequest: "1"
+cpuLimit: "2"
+memoryRequest: "2" # in Gi
+memoryLimit: "4"   # in Gi
+gpuLimit: 0
