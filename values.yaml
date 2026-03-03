@@ -42,8 +42,8 @@ envs:
   YOLO_MODEL_PATH: "/models/yolo11n.pt"
 
 # --- Resources ---
-cpuRequest: "200"
-cpuLimit: "1000"
-memoryRequest: "1" # in Gi
-memoryLimit: "1"   # in Gi
+cpuRequest: "200Mi"
+cpuLimit: "1000Mi"
+memoryRequest: "1Gi" # in Gi
+memoryLimit: "2Gi"   # in Gi
 gpuLimit: 0
