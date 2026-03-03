@@ -39,11 +39,11 @@ spec:
       {{- end }}
       resources:
         requests:
-          cpu: {{ .Values.cpuRequest | quote }}m
-          memory: "{{ .Values.memoryRequest }}Gi"
+          cpu: {{ .Values.cpuRequest | quote }}
+          memory: {{ .Values.memoryRequest }}
         limits:
-          cpu: {{ .Values.cpuLimit | quote }}m
-          memory: "{{ .Values.memoryLimit }}Gi"
+          cpu: {{ .Values.cpuLimit | quote }}
+          memory: {{ .Values.memoryLimit }}
           {{- if and .Values.gpuLimit (gt (int .Values.gpuLimit) 0) }}
           nvidia.com/gpu: {{ .Values.gpuLimit | quote }}
           {{- end }}
